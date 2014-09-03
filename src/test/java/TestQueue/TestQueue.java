@@ -6,72 +6,33 @@ import junit.framework.TestCase;
 
 public class TestQueue extends TestCase{
 	
-	public void testSimple(){
-		Cola queue = new Cola();
-		queue.add("Item1");
-		queue.add("Item2");
-		queue.add("Item3");
-		assertEquals(3, queue.size());
-		assertEquals("Item1", queue.top());
-		queue.remove();
-		assertEquals(2, queue.size());
-		assertEquals("Item2", queue.top());
-		queue.remove();
-		assertEquals(1, queue.size());
-		assertEquals("Item3", queue.top());
-		queue.remove();
-		assertEquals(0, queue.size());
+	public void test(){
+		Cola cola = new Cola();
+		assertEquals(0, cola.size());
+		assertEquals(true, cola.isEmpty());
+
+		cola.add(1);
+		assertEquals(false,cola.isEmpty());
+		assertEquals(1, cola.size());
+		assertEquals(1,cola.top());
+		cola.add(2);
+		assertEquals(1,cola.top());
+		cola.add(3);
+		cola.add(4);
+		assertEquals(4, cola.size());
+		cola.remove();
+		assertEquals(2,cola.top());
+		assertEquals(3, cola.size());
+		cola.remove();
+		cola.remove();
+		cola.remove();
 		try{
-			queue.remove();
+			cola.remove();
 		}
 		catch(AssertionError e){
 			return;
 		}
-		fail();
-	}	
-	
-	public void testComplex(){
-		Cola queue = new Cola();
-		queue.add("Item1");
-		queue.add("Item2");
-		queue.add("Item3");
-		assertEquals(3, queue.size());
-		assertEquals("Item1", queue.top());
-		queue.remove();
-		assertEquals(2, queue.size());
-		assertEquals("Item2", queue.top());
-		queue.add("Item4");
-		assertEquals(3, queue.size());
-		assertEquals("Item2", queue.top());
-		queue.remove();
-		assertEquals("Item3", queue.top());
-		queue.remove();
-		assertEquals(1, queue.size());
-		assertEquals("Item4", queue.top());
-		queue.remove();
-		assertEquals(0, queue.size());
-		try{
-			queue.remove();
-			fail();
-		}
-		catch(AssertionError e){			
-		}
-		queue.add("Item5");
-		queue.add("Item6");
-		queue.remove();
-		assertEquals(1, queue.size());
-		assertEquals("Item6", queue.top());
-		queue.add("Item7");
-		assertEquals(2, queue.size());
-		assertEquals("Item6", queue.top());		
-		queue.remove();
-		assertEquals("Item7", queue.top());	
-		queue.remove();
-		try{
-			queue.top();
-			fail();
-		}
-		catch(AssertionError e){			
-		}
+		fail();		
 	}
+
 }
